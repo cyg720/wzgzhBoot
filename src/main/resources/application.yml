@@ -1,0 +1,38 @@
+server:
+  port: 8080
+  context-path: /wxgzh
+#logging:  
+#  level:
+#    root: info
+#    org.hibernate: ERROR
+spring:
+  datasource:
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/wxgzh?characterEncoding=UTF-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  jpa:  
+    database: mysql
+    generate-ddl: true 
+    show-sql: true 
+    hibernate:
+      ddl-auto: update 
+      naming: 
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #hibernate -> 数据库的  命名策略,使用hibernate5默认的即helloWord字段到数据也是驼峰命名不适用下划线隔开
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
